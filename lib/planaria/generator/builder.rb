@@ -5,14 +5,14 @@ module Planaria::Generator
     end
 
     def run 
-      erb = ::ERB.new(File.read "./templates/#{@name}/html/index.html.erb")
-      yaml = ::YAML.load(File.read "./templates/#{@name}/config.yml")
+      erb = ::ERB.new(File.read "./projects/#{@name}/html/index.html.erb")
+      yaml = ::YAML.load(File.read "./projects/#{@name}/config.yml")
       
       yaml.each do |k, v|
         instance_variable_set("@#{k}", v)
       end
       
-      ::File.open "templates/#{@name}/index.html", "w" do |file|
+      ::File.open "./projects/#{@name}/index.html", "w" do |file|
         file.write erb.result(binding)
       end
     end

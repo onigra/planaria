@@ -1,3 +1,5 @@
+[![Gem Version](https://badge.fury.io/rb/planaria.svg)](http://badge.fury.io/rb/planaria) [![Build Status](https://travis-ci.org/onigra/planaria.svg)](https://travis-ci.org/onigra/planaria) [![Coverage Status](https://coveralls.io/repos/onigra/planaria/badge.svg?branch=master)](https://coveralls.io/r/onigra/planaria?branch=master) [![Code Climate](https://codeclimate.com/github/onigra/planaria/badges/gpa.svg)](https://codeclimate.com/github/onigra/planaria) [![Dependency Status](https://gemnasium.com/onigra/planaria.svg)](https://gemnasium.com/onigra/planaria)
+
 # Planaria
 
 Simple static template generator.

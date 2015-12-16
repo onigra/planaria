@@ -2,47 +2,116 @@ require File.expand_path(File.join('../../', 'spec_helper'), File.dirname(__FILE
 
 RSpec.describe Planaria::Generator::Builder do
   describe "#run" do
-    let(:assert_html) do
-      <<-EOS
+    context "only base.yml" do
+      let(:project_name) { "foobar" }
+      let(:assert_html) do
+        <<-EOS
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>SampleProject</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>#{project_name}</title>
+    <link rel="stylesheet" type="text/css" media="screen" href="css/#{project_name}.css" >
+    <script type="text/javascript" src="js/#{project_name}.js" ></script>
   </head>
 
   <body>
-    <header role="banner">
-      <h1>SampleProject</h1>
-    </header>
-
-    <div class="wrap">
-      <main role="main">
-
-      </main>
-    </div>
-
-    <footer role="contentinfo">
-      <small>Copyright &copy; <time datetime="2015">2015</time></small>
-    </footer>
+    <h1>FIXME</h1>
   </body>
+
+  <footer>
+  </footer>
 </html>
-      EOS
+        EOS
+      end
+
+      before do
+        Planaria::Generator::Initializer.new(project_name).run
+        Planaria::Generator::Builder.new(project_name).run
+      end
+
+      after { FileUtils.remove_dir "#{APP_ROOT}/#{project_name}", force: true }
+
+      it { expect(File.read "#{APP_ROOT}/#{project_name}/base.html").to eq assert_html }
     end
 
-    let(:project_name) { "foobar" }
+    context "en.yml, ja.yml" do
+      let(:project_name) { "i18n" }
+      let(:en_name) { "en" }
+      let(:ja_name) { "ja" }
 
-    before do
-      Planaria::Generator::Initializer.new(project_name).run
-      FileUtils.cp("#{APP_ROOT}/sample/index.html.erb", "#{APP_ROOT}/#{project_name}/html/index.html.erb")
-      FileUtils.cp("#{APP_ROOT}/sample/config.yml", "#{APP_ROOT}/#{project_name}/config.yml")
-      Planaria::Generator::Builder.new(project_name).run
+      let(:en_html) do
+        <<-EOS
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>#{en_name}</title>
+    <link rel="stylesheet" type="text/css" media="screen" href="css/#{project_name}.css" >
+    <script type="text/javascript" src="js/#{project_name}.js" ></script>
+  </head>
+
+  <body>
+    <h1>FIXME</h1>
+  </body>
+
+  <footer>
+  </footer>
+</html>
+        EOS
+      end
+
+      let(:ja_html) do
+        <<-EOS
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>#{ja_name}</title>
+    <link rel="stylesheet" type="text/css" media="screen" href="css/#{project_name}.css" >
+    <script type="text/javascript" src="js/#{project_name}.js" ></script>
+  </head>
+
+  <body>
+    <h1>FIXME</h1>
+  </body>
+
+  <footer>
+  </footer>
+</html>
+        EOS
+      end
+
+      before do
+        Planaria::Generator::Initializer.new(project_name).run
+        FileUtils.rm("#{APP_ROOT}/#{project_name}/yamls/base.yml")
+
+        File.open "#{APP_ROOT}/#{project_name}/yamls/en.yml", "w" do |file|
+          file.write "title: #{en_name}"
+        end
+
+        File.open "#{APP_ROOT}/#{project_name}/yamls/ja.yml", "w" do |file|
+          file.write "title: #{ja_name}"
+        end
+
+        Planaria::Generator::Builder.new(project_name).run
+      end
+
+      after { FileUtils.remove_dir "#{APP_ROOT}/#{project_name}", force: true }
+
+      it "exists two files" do
+        aggregate_failures do
+          expect(File.exist?("#{APP_ROOT}/#{project_name}/en.html")).to be_truthy
+          expect(File.exist?("#{APP_ROOT}/#{project_name}/ja.html")).to be_truthy
+        end
+      end
+
+      it "title is different" do
+        aggregate_failures do
+          expect(File.read "#{APP_ROOT}/#{project_name}/ja.html").to eq ja_html
+          expect(File.read "#{APP_ROOT}/#{project_name}/en.html").to eq en_html
+        end
+      end
     end
-
-    after { FileUtils.remove_dir "#{APP_ROOT}/#{project_name}", force: true }
-
-    it { expect(File.read "#{APP_ROOT}/#{project_name}/index.html").to eq assert_html }
   end
 end

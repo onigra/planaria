@@ -5,16 +5,23 @@ module Planaria::Generator
     end
 
     def run 
-      erb = ::ERB.new(File.read "./#{@name}/html/index.html.erb")
-      yaml = ::YAML.load(File.read "./#{@name}/config.yml")
-      
-      yaml.each do |k, v|
-        instance_variable_set("@#{k}", v)
+      yaml_files.each do |yml|
+        erb = ::ERB.new(File.read "./#{@name}/html/index.html.erb")
+        file_name = yml.split("/").last.split(".").first
+        yaml = ::YAML.load(File.read yml)
+
+        yaml.each do |k, v|
+          instance_variable_set("@#{k}", v)
+        end
+
+        ::File.open "./#{@name}/#{file_name}.html", "w" do |file|
+          file.write erb.result(binding)
+        end
       end
-      
-      ::File.open "./#{@name}/index.html", "w" do |file|
-        file.write erb.result(binding)
-      end
+    end
+
+    def yaml_files
+      Dir.glob "./#{@name}/yamls/*.yml"
     end
   end
 end

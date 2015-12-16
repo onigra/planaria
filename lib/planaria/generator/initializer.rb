@@ -22,6 +22,7 @@ module Planaria::Generator
       mkdir "./#{@name}/css"
       mkdir "./#{@name}/js"
       mkdir "./#{@name}/img"
+      mkdir "./#{@name}/yamls"
     end
 
     def create_files
@@ -34,7 +35,7 @@ module Planaria::Generator
         file.write(::Planaria::Templates::Html.index @name)
       end
 
-      ::File.open "./#{@name}/config.yml", "w" do |file|
+      ::File.open "./#{@name}/yamls/base.yml", "w" do |file|
         file.write(::Planaria::Templates::Yaml.default @name)
       end
     end

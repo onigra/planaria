@@ -16,14 +16,15 @@ RSpec.describe Planaria::Generator::Initializer  do
           expect(Dir.exist?("#{APP_ROOT}/#{project_name}/css")).to be_truthy
           expect(Dir.exist?("#{APP_ROOT}/#{project_name}/js")).to be_truthy
           expect(Dir.exist?("#{APP_ROOT}/#{project_name}/img")).to be_truthy
+          expect(Dir.exist?("#{APP_ROOT}/#{project_name}/yamls")).to be_truthy
 
-          expect(File.exist?("#{APP_ROOT}/#{project_name}/config.yml")).to be_truthy
+          expect(File.exist?("#{APP_ROOT}/#{project_name}/yamls/base.yml")).to be_truthy
           expect(File.exist?("#{APP_ROOT}/#{project_name}/html/index.html.erb")).to be_truthy
           expect(File.exist?("#{APP_ROOT}/#{project_name}/css/#{project_name}.css")).to be_truthy
           expect(File.exist?("#{APP_ROOT}/#{project_name}/js/#{project_name}.js")).to be_truthy
 
           expect(File.read "#{APP_ROOT}/#{project_name}/html/index.html.erb").to eq ::Planaria::Templates::Html.index(project_name)
-          expect(File.read "#{APP_ROOT}/#{project_name}/config.yml").to eq ::Planaria::Templates::Yaml.default(project_name)
+          expect(File.read "#{APP_ROOT}/#{project_name}/yamls/base.yml").to eq ::Planaria::Templates::Yaml.default(project_name)
         end
       end
     end
@@ -49,8 +50,9 @@ RSpec.describe Planaria::Generator::Initializer  do
           expect(Dir.exist?("#{APP_ROOT}/#{project_name1}/css")).to be_truthy
           expect(Dir.exist?("#{APP_ROOT}/#{project_name1}/js")).to be_truthy
           expect(Dir.exist?("#{APP_ROOT}/#{project_name1}/img")).to be_truthy
+          expect(Dir.exist?("#{APP_ROOT}/#{project_name1}/yamls")).to be_truthy
 
-          expect(File.exist?("#{APP_ROOT}/#{project_name1}/config.yml")).to be_truthy
+          expect(File.exist?("#{APP_ROOT}/#{project_name1}/yamls/base.yml")).to be_truthy
           expect(File.exist?("#{APP_ROOT}/#{project_name1}/html/index.html.erb")).to be_truthy
           expect(File.exist?("#{APP_ROOT}/#{project_name1}/css/#{project_name1}.css")).to be_truthy
           expect(File.exist?("#{APP_ROOT}/#{project_name1}/js/#{project_name1}.js")).to be_truthy
@@ -60,9 +62,10 @@ RSpec.describe Planaria::Generator::Initializer  do
           expect(Dir.exist?("#{APP_ROOT}/#{project_name2}/css")).to be_truthy
           expect(Dir.exist?("#{APP_ROOT}/#{project_name2}/js")).to be_truthy
           expect(Dir.exist?("#{APP_ROOT}/#{project_name2}/img")).to be_truthy
+          expect(Dir.exist?("#{APP_ROOT}/#{project_name2}/yamls")).to be_truthy
 
+          expect(File.exist?("#{APP_ROOT}/#{project_name2}/yamls/base.yml")).to be_truthy
           expect(File.exist?("#{APP_ROOT}/#{project_name2}/html/index.html.erb")).to be_truthy
-          expect(File.exist?("#{APP_ROOT}/#{project_name2}/config.yml")).to be_truthy
           expect(File.exist?("#{APP_ROOT}/#{project_name2}/css/#{project_name2}.css")).to be_truthy
           expect(File.exist?("#{APP_ROOT}/#{project_name2}/js/#{project_name2}.js")).to be_truthy
         end

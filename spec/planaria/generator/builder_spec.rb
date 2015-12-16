@@ -1,10 +1,7 @@
 require File.expand_path(File.join('../../', 'spec_helper'), File.dirname(__FILE__))
 
 RSpec.describe Planaria::Generator::Builder do
-  after { FileUtils.remove_dir "#{APP_ROOT}/projects", force: true }
-
   describe "#run" do
-    let(:project_name) { "sample" }
     let(:assert_html) do
       <<-EOS
 <!DOCTYPE html>
@@ -35,13 +32,17 @@ RSpec.describe Planaria::Generator::Builder do
       EOS
     end
 
+    let(:project_name) { "foobar" }
+
     before do
       Planaria::Generator::Initializer.new(project_name).run
-      FileUtils.cp("#{APP_ROOT}/sample/index.html.erb", "#{APP_ROOT}/projects/#{project_name}/html/index.html.erb")
-      FileUtils.cp("#{APP_ROOT}/sample/config.yml", "#{APP_ROOT}/projects/#{project_name}/config.yml")
+      FileUtils.cp("#{APP_ROOT}/sample/index.html.erb", "#{APP_ROOT}/#{project_name}/html/index.html.erb")
+      FileUtils.cp("#{APP_ROOT}/sample/config.yml", "#{APP_ROOT}/#{project_name}/config.yml")
       Planaria::Generator::Builder.new(project_name).run
     end
 
-    it { expect(File.read "#{APP_ROOT}/projects/#{project_name}/index.html").to eq assert_html }
+    after { FileUtils.remove_dir "#{APP_ROOT}/#{project_name}", force: true }
+
+    it { expect(File.read "#{APP_ROOT}/#{project_name}/index.html").to eq assert_html }
   end
 end

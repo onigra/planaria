@@ -7,6 +7,7 @@ module Planaria::Generator
     def run
       create_directories
       create_files
+      write_files
     end
 
     private
@@ -24,12 +25,17 @@ module Planaria::Generator
     end
 
     def create_files
-      FileUtils.touch("./#{@name}/config.yml")
       FileUtils.touch("./#{@name}/css/#{@name}.css")
       FileUtils.touch("./#{@name}/js/#{@name}.js")
+    end
 
+    def write_files
       ::File.open "./#{@name}/html/index.html.erb", "w" do |file|
         file.write(::Planaria::Templates::Html.index @name)
+      end
+
+      ::File.open "./#{@name}/config.yml", "w" do |file|
+        file.write(::Planaria::Templates::Yaml.default @name)
       end
     end
   end

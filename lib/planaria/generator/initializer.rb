@@ -5,12 +5,12 @@ module Planaria::Generator
     end
 
     def run
-      mkdir "./projects/#{@name}"
-      mkdir "./projects/#{@name}/html"
-      mkdir "./projects/#{@name}/css"
-      mkdir "./projects/#{@name}/js"
-      FileUtils.touch("./projects/#{@name}/html/index.html.erb")
-      FileUtils.touch("./projects/#{@name}/config.yml")
+      mkdir "./#{@name}"
+      mkdir "./#{@name}/html"
+      mkdir "./#{@name}/css"
+      mkdir "./#{@name}/js"
+      FileUtils.touch("./#{@name}/html/index.html.erb")
+      FileUtils.touch("./#{@name}/config.yml")
     end
 
     private

@@ -5,18 +5,27 @@ module Planaria::Generator
     end
 
     def run
-      mkdir "./#{@name}"
-      mkdir "./#{@name}/html"
-      mkdir "./#{@name}/css"
-      mkdir "./#{@name}/js"
-      FileUtils.touch("./#{@name}/html/index.html.erb")
-      FileUtils.touch("./#{@name}/config.yml")
+      create_directories
+      create_files
     end
 
     private
 
     def mkdir(path)
       FileUtils.mkdir_p("#{path}")
+    end
+
+    def create_directories
+      mkdir "./#{@name}"
+      mkdir "./#{@name}/html"
+      mkdir "./#{@name}/css"
+      mkdir "./#{@name}/js"
+      mkdir "./#{@name}/img"
+    end
+
+    def create_files
+      FileUtils.touch("./#{@name}/config.yml")
+      FileUtils.touch("./#{@name}/html/index.html.erb")
     end
   end
 end

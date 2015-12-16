@@ -22,7 +22,7 @@ RSpec.describe Planaria::Generator::Initializer  do
           expect(File.exist?("#{APP_ROOT}/#{project_name}/css/#{project_name}.css")).to be_truthy
           expect(File.exist?("#{APP_ROOT}/#{project_name}/js/#{project_name}.js")).to be_truthy
 
-          expect(File.read "#{APP_ROOT}/#{project_name}/html/index.html.erb").to eq ::Planaria::Templates::Html.index
+          expect(File.read "#{APP_ROOT}/#{project_name}/html/index.html.erb").to eq ::Planaria::Templates::Html.index(project_name)
         end
       end
     end

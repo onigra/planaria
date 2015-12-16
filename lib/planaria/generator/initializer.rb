@@ -29,7 +29,7 @@ module Planaria::Generator
       FileUtils.touch("./#{@name}/js/#{@name}.js")
 
       ::File.open "./#{@name}/html/index.html.erb", "w" do |file|
-        file.write ::Planaria::Templates::Html.index
+        file.write(::Planaria::Templates::Html.index @name)
       end
     end
   end

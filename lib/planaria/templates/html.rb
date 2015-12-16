@@ -5,7 +5,7 @@ module Planaria::Templates
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">  
+    <meta charset="utf-8">
     <title><%= @title %></title>
     <link rel="stylesheet" type="text/css" media="screen" href="css/#{name}.css" >
     <script type="text/javascript" src="js/#{name}.js" ></script>

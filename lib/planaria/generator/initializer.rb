@@ -25,9 +25,12 @@ module Planaria::Generator
 
     def create_files
       FileUtils.touch("./#{@name}/config.yml")
-      FileUtils.touch("./#{@name}/html/index.html.erb")
       FileUtils.touch("./#{@name}/css/#{@name}.css")
       FileUtils.touch("./#{@name}/js/#{@name}.js")
+
+      ::File.open "./#{@name}/html/index.html.erb", "w" do |file|
+        file.write ::Planaria::Templates::Html.index
+      end
     end
   end
 end

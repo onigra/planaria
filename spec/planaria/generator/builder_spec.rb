@@ -2,47 +2,40 @@ require File.expand_path(File.join('../../', 'spec_helper'), File.dirname(__FILE
 
 RSpec.describe Planaria::Generator::Builder do
   describe "#run" do
-    let(:assert_html) do
-      <<-EOS
+    context "only base.yml" do
+      let(:project_name) { "foobar" }
+      let(:assert_html) do
+        <<-EOS
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>SampleProject</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>#{project_name}</title>
+    <link rel="stylesheet" type="text/css" media="screen" href="css/#{project_name}.css" >
+    <script type="text/javascript" src="js/#{project_name}.js" ></script>
   </head>
 
   <body>
-    <header role="banner">
-      <h1>SampleProject</h1>
-    </header>
-
-    <div class="wrap">
-      <main role="main">
-
-      </main>
-    </div>
-
-    <footer role="contentinfo">
-      <small>Copyright &copy; <time datetime="2015">2015</time></small>
-    </footer>
+    <h1>FIXME</h1>
   </body>
+
+  <footer>
+  </footer>
 </html>
-      EOS
+        EOS
+      end
+
+      before do
+        Planaria::Generator::Initializer.new(project_name).run
+        Planaria::Generator::Builder.new(project_name).run
+      end
+
+      after { FileUtils.remove_dir "#{APP_ROOT}/#{project_name}", force: true }
+
+      it { expect(File.read "#{APP_ROOT}/#{project_name}/base.html").to eq assert_html }
     end
 
-    let(:project_name) { "foobar" }
-
-    before do
-      Planaria::Generator::Initializer.new(project_name).run
-      FileUtils.cp("#{APP_ROOT}/sample/index.html.erb", "#{APP_ROOT}/#{project_name}/html/index.html.erb")
-      FileUtils.cp("#{APP_ROOT}/sample/config.yml", "#{APP_ROOT}/#{project_name}/config.yml")
-      Planaria::Generator::Builder.new(project_name).run
+    context "en.yml, ja.yml" do
     end
-
-    after { FileUtils.remove_dir "#{APP_ROOT}/#{project_name}", force: true }
-
-    it { expect(File.read "#{APP_ROOT}/#{project_name}/index.html").to eq assert_html }
   end
 end

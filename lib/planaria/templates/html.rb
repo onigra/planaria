@@ -1,14 +1,14 @@
 module Planaria::Templates
   class Html
-    def self.index
-      <<-'EOS'
+    def self.index(name)
+      <<-EOS
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">  
-    <title>FIXME</title>
-    <link rel="stylesheet" type="text/css" media="screen" href=<%= "\"css/#{@name}.css\""%> >
-    <script type="text/javascript" src=<%= "\"js/#{@name}.js\""%> ></script>
+    <title><%= @title %></title>
+    <link rel="stylesheet" type="text/css" media="screen" href="css/#{name}.css" >
+    <script type="text/javascript" src="js/#{name}.js" ></script>
   </head>
 
   <body>

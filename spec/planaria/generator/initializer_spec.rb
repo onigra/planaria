@@ -15,8 +15,12 @@ RSpec.describe Planaria::Generator::Initializer  do
           expect(Dir.exist?("#{APP_ROOT}/#{project_name}/html")).to be_truthy
           expect(Dir.exist?("#{APP_ROOT}/#{project_name}/css")).to be_truthy
           expect(Dir.exist?("#{APP_ROOT}/#{project_name}/js")).to be_truthy
-          expect(File.exist?("#{APP_ROOT}/#{project_name}/html/index.html.erb")).to be_truthy
+          expect(Dir.exist?("#{APP_ROOT}/#{project_name}/img")).to be_truthy
+
           expect(File.exist?("#{APP_ROOT}/#{project_name}/config.yml")).to be_truthy
+          expect(File.exist?("#{APP_ROOT}/#{project_name}/html/index.html.erb")).to be_truthy
+          expect(File.exist?("#{APP_ROOT}/#{project_name}/css/#{project_name}.css")).to be_truthy
+          expect(File.exist?("#{APP_ROOT}/#{project_name}/js/#{project_name}.js")).to be_truthy
         end
       end
     end
@@ -41,15 +45,23 @@ RSpec.describe Planaria::Generator::Initializer  do
           expect(Dir.exist?("#{APP_ROOT}/#{project_name1}/html")).to be_truthy
           expect(Dir.exist?("#{APP_ROOT}/#{project_name1}/css")).to be_truthy
           expect(Dir.exist?("#{APP_ROOT}/#{project_name1}/js")).to be_truthy
-          expect(File.exist?("#{APP_ROOT}/#{project_name1}/html/index.html.erb")).to be_truthy
+          expect(Dir.exist?("#{APP_ROOT}/#{project_name1}/img")).to be_truthy
+
           expect(File.exist?("#{APP_ROOT}/#{project_name1}/config.yml")).to be_truthy
+          expect(File.exist?("#{APP_ROOT}/#{project_name1}/html/index.html.erb")).to be_truthy
+          expect(File.exist?("#{APP_ROOT}/#{project_name1}/css/#{project_name1}.css")).to be_truthy
+          expect(File.exist?("#{APP_ROOT}/#{project_name1}/js/#{project_name1}.js")).to be_truthy
 
           expect(Dir.exist?("#{APP_ROOT}/#{project_name2}")).to be_truthy
           expect(Dir.exist?("#{APP_ROOT}/#{project_name2}/html")).to be_truthy
           expect(Dir.exist?("#{APP_ROOT}/#{project_name2}/css")).to be_truthy
           expect(Dir.exist?("#{APP_ROOT}/#{project_name2}/js")).to be_truthy
+          expect(Dir.exist?("#{APP_ROOT}/#{project_name2}/img")).to be_truthy
+
           expect(File.exist?("#{APP_ROOT}/#{project_name2}/html/index.html.erb")).to be_truthy
           expect(File.exist?("#{APP_ROOT}/#{project_name2}/config.yml")).to be_truthy
+          expect(File.exist?("#{APP_ROOT}/#{project_name2}/css/#{project_name2}.css")).to be_truthy
+          expect(File.exist?("#{APP_ROOT}/#{project_name2}/js/#{project_name2}.js")).to be_truthy
         end
       end
     end

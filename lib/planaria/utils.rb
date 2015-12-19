@@ -6,7 +6,7 @@ module Planaria
         pre = "   "
       end
 
-      directories = Dir.entries(path).reject { |d| d == "." or d == ".." }
+      directories = Dir.entries(path).reject { |d| d == "." or d == ".." }.sort
 
       directories.each do |dir|
         last = dir if dir == directories.last

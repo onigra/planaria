@@ -12,5 +12,12 @@ module Planaria
     def build
       Generator::Builder::Runner.new(options[:name]).run
     end
+
+    desc "devide", "Devide project."
+    option :name, type: :string, aliases: '-n', required: true
+    option :base, type: :string, aliases: '-b', required: true
+    def devide
+      Generator::Devide::Runner.new(options[:name], options[:base]).run
+    end
   end
 end

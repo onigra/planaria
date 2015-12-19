@@ -7,7 +7,6 @@ module Planaria::Generator
 
       def run 
         yaml_files.each do |yml|
-          erb = ::ERB.new(File.read "./#{@name}/html/index.html.erb")
           file_name = yml.split("/").last.split(".").first
           yaml = ::YAML.load(File.read yml)
 
@@ -22,7 +21,13 @@ module Planaria::Generator
       end
 
       def yaml_files
-        Dir.glob "./#{@name}/yamls/*.yml"
+        ::Dir.glob "./#{@name}/yamls/*.yml"
+      end
+
+      private
+
+      def erb
+        ::ERB.new(File.read "./#{@name}/html/index.html.erb")
       end
     end
   end

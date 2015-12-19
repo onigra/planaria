@@ -1,8 +1,8 @@
-class Planaria::StopDevide < StandardError; end
+class Planaria::StopDivide < StandardError; end
 class Planaria::BaseProjectNotFound < StandardError; end
 
 module Planaria::Generator
-  module Devide
+  module Divide
     class Checker
       def initialize(name, base)
         @name = name
@@ -27,7 +27,7 @@ module Planaria::Generator
         if input.to_s == "Y"
           FileUtils.rm_rf "./#{@name}"
         else
-          raise ::Planaria::StopDevide
+          raise ::Planaria::StopDivide
         end
       end
     end

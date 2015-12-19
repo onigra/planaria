@@ -1,6 +1,6 @@
 require File.expand_path(File.join('../../../', 'spec_helper'), File.dirname(__FILE__))
 
-RSpec.describe Planaria::Generator::Devide::Executer do
+RSpec.describe Planaria::Generator::Divide::Executer do
   let(:base) { "base" }
   let(:new) { "new" }
 

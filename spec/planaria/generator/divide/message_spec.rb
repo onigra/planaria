@@ -1,6 +1,6 @@
 require File.expand_path(File.join('../../../', 'spec_helper'), File.dirname(__FILE__))
 
-RSpec.describe Planaria::Generator::Devide::Message do
+RSpec.describe Planaria::Generator::Divide::Message do
   let(:base) { "base" }
   let(:new) { "new" }
 
@@ -12,7 +12,7 @@ RSpec.describe Planaria::Generator::Devide::Message do
 
     let(:message) do
       <<-EOS
-Devide #{new} project from #{base}
+Divide #{new} project from #{base}
 ./new
       EOS
     end

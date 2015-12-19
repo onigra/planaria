@@ -1,5 +1,5 @@
 module Planaria::Generator
-  module Devide
+  module Divide
     class Runner
       def initialize(name, base)
         @name = name
@@ -12,8 +12,8 @@ module Planaria::Generator
         message
       rescue ::Planaria::BaseProjectNotFound
         puts "Base project not found."
-      rescue ::Planaria::StopDevide
-        puts "Stop devide."
+      rescue ::Planaria::StopDivide
+        puts "Stop divide."
       end
 
       private

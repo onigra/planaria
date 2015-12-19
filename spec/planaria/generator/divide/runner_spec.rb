@@ -1,6 +1,6 @@
 require File.expand_path(File.join('../../../', 'spec_helper'), File.dirname(__FILE__))
 
-RSpec.describe Planaria::Generator::Devide::Runner do
+RSpec.describe Planaria::Generator::Divide::Runner do
   let(:base) { "base" }
   let(:new) { "new" }
 
@@ -29,7 +29,7 @@ RSpec.describe Planaria::Generator::Devide::Runner do
       let(:message) do
         <<-EOS
 #{new} directory is already exist. Overwrite? (type Y/n)
-Stop devide.
+Stop divide.
         EOS
       end
 

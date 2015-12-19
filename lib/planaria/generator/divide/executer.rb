@@ -1,5 +1,5 @@
 module Planaria::Generator
-  module Devide
+  module Divide
     class Executer
       include ::Planaria::Utils
 

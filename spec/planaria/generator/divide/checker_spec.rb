@@ -1,6 +1,6 @@
 require File.expand_path(File.join('../../../', 'spec_helper'), File.dirname(__FILE__))
 
-RSpec.describe Planaria::Generator::Devide::Checker do
+RSpec.describe Planaria::Generator::Divide::Checker do
   let(:base) { "base" }
   let(:new) { "new" }
 
@@ -33,8 +33,8 @@ RSpec.describe Planaria::Generator::Devide::Checker do
     context "input n" do
       before { allow(STDIN).to receive(:gets) { "n" } }
 
-      it "raise Planaria::StopDevide" do
-        expect { described_class.new(new, base).run }.to raise_error Planaria::StopDevide
+      it "raise Planaria::StopDivide" do
+        expect { described_class.new(new, base).run }.to raise_error Planaria::StopDivide
       end
 
       it "directory was not remove" do

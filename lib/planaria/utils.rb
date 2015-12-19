@@ -1,5 +1,5 @@
 module Planaria
-  class Utils
+  module Utils
     def self.tree(path, pre = nil)
       unless pre 
         puts path
@@ -19,6 +19,19 @@ module Planaria
           puts pre + (last ? "`" : "|") + "--" + dir
         end
       end
+    end
+
+    def mkdir(path)
+      FileUtils.mkdir_p("#{path}")
+    end
+
+    def create_directories
+      mkdir "./#{@name}"
+      mkdir "./#{@name}/html"
+      mkdir "./#{@name}/css"
+      mkdir "./#{@name}/js"
+      mkdir "./#{@name}/img"
+      mkdir "./#{@name}/yamls"
     end
   end
 end

@@ -1,6 +1,8 @@
 module Planaria::Generator
   module Initializer
     class Executer
+      include ::Planaria::Utils
+
       def initialize(name)
         @name = name
       end
@@ -12,19 +14,6 @@ module Planaria::Generator
       end
 
       private
-
-      def mkdir(path)
-        FileUtils.mkdir_p("#{path}")
-      end
-
-      def create_directories
-        mkdir "./#{@name}"
-        mkdir "./#{@name}/html"
-        mkdir "./#{@name}/css"
-        mkdir "./#{@name}/js"
-        mkdir "./#{@name}/img"
-        mkdir "./#{@name}/yamls"
-      end
 
       def create_files
         FileUtils.touch("./#{@name}/css/#{@name}.css")

@@ -4,7 +4,7 @@ module Planaria
     desc "init", "Create new template directories."
     option :name, type: :string, aliases: '-n', required: true
     def init
-      Generator::Initializer.new(options[:name]).run
+      Generator::Initializer::Runner.new(options[:name]).run
     end
 
     desc "build", "Create template."

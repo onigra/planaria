@@ -6,11 +6,18 @@ module Planaria::Generator
       end
 
       def run
+        check
         execute
         message
+      rescue ::Planaria::BuildProjectNotFound
+        puts "#{@name} not found"
       end
 
       private
+
+      def check
+        Checker.new(@name).run
+      end
 
       def execute
         Executer.new(@name).run

@@ -7,6 +7,7 @@ module Planaria::Generator
 
       def run
         execute
+        message
       end
 
       private

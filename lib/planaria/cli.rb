@@ -10,7 +10,7 @@ module Planaria
     desc "build", "Create template."
     option :name, type: :string, aliases: '-n', required: true
     def build
-      Generator::Builder.new(options[:name]).run
+      Generator::Builder::Runner.new(options[:name]).run
     end
   end
 end

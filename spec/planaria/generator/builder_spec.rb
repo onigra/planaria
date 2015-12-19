@@ -26,7 +26,7 @@ RSpec.describe Planaria::Generator::Builder do
       end
 
       before do
-        Planaria::Generator::Initializer.new(project_name).run
+        Planaria::Generator::Initializer::Executer.new(project_name).run
         Planaria::Generator::Builder.new(project_name).run
       end
 
@@ -83,7 +83,7 @@ RSpec.describe Planaria::Generator::Builder do
       end
 
       before do
-        Planaria::Generator::Initializer.new(project_name).run
+        Planaria::Generator::Initializer::Executer.new(project_name).run
         FileUtils.rm("#{APP_ROOT}/#{project_name}/yamls/base.yml")
 
         File.open "#{APP_ROOT}/#{project_name}/yamls/en.yml", "w" do |file|

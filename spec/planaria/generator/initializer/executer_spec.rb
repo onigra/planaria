@@ -1,6 +1,6 @@
-require File.expand_path(File.join('../../', 'spec_helper'), File.dirname(__FILE__))
+require File.expand_path(File.join('../../../', 'spec_helper'), File.dirname(__FILE__))
 
-RSpec.describe Planaria::Generator::Initializer  do
+RSpec.describe Planaria::Generator::Initializer::Executer do
   describe "#run" do
     context "run at once" do
       let(:project_name) { "foobar" }

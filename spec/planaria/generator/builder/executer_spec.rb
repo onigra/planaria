@@ -1,6 +1,6 @@
-require File.expand_path(File.join('../../', 'spec_helper'), File.dirname(__FILE__))
+require File.expand_path(File.join('../../../', 'spec_helper'), File.dirname(__FILE__))
 
-RSpec.describe Planaria::Generator::Builder do
+RSpec.describe Planaria::Generator::Builder::Executer do
   describe "#run" do
     context "only base.yml" do
       let(:project_name) { "foobar" }
@@ -27,7 +27,7 @@ RSpec.describe Planaria::Generator::Builder do
 
       before do
         Planaria::Generator::Initializer::Executer.new(project_name).run
-        Planaria::Generator::Builder.new(project_name).run
+        described_class.new(project_name).run
       end
 
       after { FileUtils.remove_dir "#{APP_ROOT}/#{project_name}", force: true }
@@ -94,7 +94,7 @@ RSpec.describe Planaria::Generator::Builder do
           file.write "title: #{ja_name}"
         end
 
-        Planaria::Generator::Builder.new(project_name).run
+        described_class.new(project_name).run
       end
 
       after { FileUtils.remove_dir "#{APP_ROOT}/#{project_name}", force: true }

@@ -10,7 +10,7 @@ RSpec.describe Planaria::Generator::Builder::Runner do
 
       let(:message) do
         <<-EOS
-Generate #{project}/base.html
+Generate #{project}/base/index.html
         EOS
       end
 

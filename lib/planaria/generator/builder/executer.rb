@@ -14,7 +14,8 @@ module Planaria::Generator
             instance_variable_set("@#{k}", v)
           end
 
-          ::File.open "./#{@name}/#{file_name}.html", "w" do |file|
+          create_directory file_name
+          ::File.open "./#{@name}/#{file_name}/index.html", "w" do |file|
             file.write erb.result(binding)
           end
         end
@@ -28,6 +29,10 @@ module Planaria::Generator
 
       def erb
         ::ERB.new(File.read "./#{@name}/html/index.html.erb")
+      end
+
+      def create_directory(file_name)
+        FileUtils.mkdir_p "./#{@name}/#{file_name}"
       end
     end
   end

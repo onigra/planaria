@@ -10,13 +10,13 @@ RSpec.describe Planaria::Generator::Builder::Runner do
 
       let(:message) do
         <<-EOS
-Generate #{project}/base.html
+Generate #{project}/base/index.html
         EOS
       end
 
       it do
         expect { described_class.new(project).run }.to output(message).to_stdout
-        expect(File.exist?("#{APP_ROOT}/#{project}/base.html")).to be_truthy
+        expect(File.exist?("#{APP_ROOT}/#{project}/base/index.html")).to be_truthy
       end
     end
 

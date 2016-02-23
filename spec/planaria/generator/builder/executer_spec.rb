@@ -32,7 +32,7 @@ RSpec.describe Planaria::Generator::Builder::Executer do
 
       after { FileUtils.remove_dir "#{APP_ROOT}/#{project_name}", force: true }
 
-      it { expect(File.read "#{APP_ROOT}/#{project_name}/base.html").to eq assert_html }
+      it { expect(File.read "#{APP_ROOT}/#{project_name}/base/index.html").to eq assert_html }
     end
 
     context "en.yml, ja.yml" do
@@ -101,15 +101,15 @@ RSpec.describe Planaria::Generator::Builder::Executer do
 
       it "exists two files" do
         aggregate_failures do
-          expect(File.exist?("#{APP_ROOT}/#{project_name}/en.html")).to be_truthy
-          expect(File.exist?("#{APP_ROOT}/#{project_name}/ja.html")).to be_truthy
+          expect(File.exist?("#{APP_ROOT}/#{project_name}/en/index.html")).to be_truthy
+          expect(File.exist?("#{APP_ROOT}/#{project_name}/ja/index.html")).to be_truthy
         end
       end
 
       it "title is different" do
         aggregate_failures do
-          expect(File.read "#{APP_ROOT}/#{project_name}/ja.html").to eq ja_html
-          expect(File.read "#{APP_ROOT}/#{project_name}/en.html").to eq en_html
+          expect(File.read "#{APP_ROOT}/#{project_name}/ja/index.html").to eq ja_html
+          expect(File.read "#{APP_ROOT}/#{project_name}/en/index.html").to eq en_html
         end
       end
     end

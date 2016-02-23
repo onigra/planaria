@@ -5,9 +5,9 @@ RSpec.describe Planaria::Generator::Builder::Message do
   describe "#run" do
     let(:message) do
       <<-EOS
-Generate #{project}/cn.html
-Generate #{project}/en.html
-Generate #{project}/ja.html
+Generate #{project}/cn/index.html
+Generate #{project}/en/index.html
+Generate #{project}/ja/index.html
       EOS
     end
 

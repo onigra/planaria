@@ -8,7 +8,7 @@ module Planaria::Generator
 
       def run
         @executer.yaml_files.each do |file|
-          puts "Generate #{@name}/#{file.split("/").last.split(".").first}.html"
+          puts "Generate #{@name}/#{file.split("/").last.split(".").first}/index.html"
         end
       end
     end

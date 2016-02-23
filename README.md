@@ -55,7 +55,7 @@ Create awesome_project project
 ```sh
 $ pln build -n awesome_project
 
-Generate awesome_project/base.html
+Generate awesome_project/base/index.html
 ```
 
 #### divide
